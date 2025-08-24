@@ -2,7 +2,7 @@ from diffusers import DiffusionPipeline
 import torch
 from datetime import datetime
 
-def generate_image(positive_prompt: str, negative_prompt, seed: int = 1234, save: bool = True):
+def generate_image(positive_prompt: str, negative_prompt, seed: int = 42, save: bool = False):
 
     torch.cuda.empty_cache()
     torch.cuda.synchronize()  # Wait for all GPU operations to finish
