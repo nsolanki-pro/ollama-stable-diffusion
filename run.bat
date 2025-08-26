@@ -1,5 +1,6 @@
 @echo off
 REM ----------------------------------------
-.\venv\Scripts\python.exe .\image-to-images.py
+REM .\venv\Scripts\python.exe .\image-to-images.py
+.\venv\Scripts\python.exe .\text-to-images.py
 REM ----------------------------------------
 

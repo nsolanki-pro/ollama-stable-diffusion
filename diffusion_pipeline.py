@@ -8,7 +8,7 @@ def generate_image(positive_prompt: str, negative_prompt, seed: int = 42, save: 
     torch.cuda.synchronize()  # Wait for all GPU operations to finish
     
     pipeline = DiffusionPipeline.from_pretrained(
-        "SG161222/RealVisXL_V4.0",
+        "SG161222/RealVisXL_V5.0",
         torch_dtype=torch.float16,
         safety_checker=None
     )
@@ -18,7 +18,10 @@ def generate_image(positive_prompt: str, negative_prompt, seed: int = 42, save: 
     image = pipeline(
         prompt=positive_prompt,
         negative_prompt=negative_prompt,
-        generator=generator
+        generator=generator,
+        #cfg_scale=15.0,          # Higher CFG scale makes the model follow the prompt more strictly
+        num_inference_steps=40,  # More steps usually produce more detailed and accurate images
+        #guidance_rescale=0.7,    # Optional: can help make prompt adherence stronger without over-saturation
     ).images[0]
 
     if save:
